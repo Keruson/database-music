@@ -61,7 +61,7 @@
 
             <div class="ms-auto d-flex">
                 <a class = "nav-link text-light active" href="#">Discos</a>
-                <a class = "nav-link text-white-50" href="cad-disco'php">Cadastrar Disco</a>
+                <a class = "nav-link text-white-50" href="cad-disco.php">Cadastrar Disco</a>
                 <a class = "nav-link text-white-50" href="artistas.php">Artistas</a>
                 <a class = "nav-link text-white-50" href="cad-artista.php">Cadastrar Artistas</a>
             </div>
@@ -75,7 +75,7 @@
             </div>
 
             <div class = "col-md-1">
-                <a href="cad-disco'php" class="btn btn-success w-100">Novo Disco</a>
+                <a href="cad-disco.php" class="btn btn-success w-100">Novo Disco</a>
             </div>
         </div>
 
@@ -165,7 +165,7 @@
                                 <td>$linha[6]</td>
 
                                 <td class='text-center'>
-                                            <a class='btn btn-sm btn-warning btn-sm' href='editar-disco'php'> Editar </a>
+                                            <a class='btn btn-sm btn-warning btn-sm' href='editar-disco.php'> Editar </a>
                                             
                                             <button
                                                 class='btn btn-danger btn-sm btnExcluir'

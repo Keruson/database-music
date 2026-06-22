@@ -45,7 +45,7 @@
 
             <div class="ms-auto d-flex">
                 <a class = "nav-link text-white-50" href="index.php">Discos</a>
-                <a class = "nav-link text-white-50" href="cad-disco'php">Cadastrar Disco</a>
+                <a class = "nav-link text-white-50" href="cad-disco.php">Cadastrar Disco</a>
                 <a class = "nav-link text-white-50" href="artistas.php">Artistas</a>
                 <a class = "nav-link text-light active" href="#">Cadastrar Artistas</a>
             </div>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="col-md-1">
-                        <a href="artistas'php" class="btn btn-secondary w-100">Voltar</a>
+                        <a href="artistas.php" class="btn btn-secondary w-100">Voltar</a>
                     </div>
                 </div>
                 

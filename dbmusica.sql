@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 21/06/2026 às 21:52
+-- Tempo de geração: 22/06/2026 às 23:45
 -- Versão do servidor: 8.4.7
 -- Versão do PHP: 8.3.28
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `tbdisco` (
   `Valor` float DEFAULT NULL,
   `IsDeleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`CodDisco`,`CodArt`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `tbdisco`
@@ -106,7 +106,9 @@ INSERT INTO `tbdisco` (`CodDisco`, `Titulo`, `Genero`, `CodArt`, `Gravadora`, `Q
 (1, 'Ride The Lightning', 'Heavy Metal', 1, 'Megaforce Records', 4, 90, 0),
 (2, 'Rust in Peace', 'Heavy Metal', 3, 'Capitol Records', 8, 80, 0),
 (3, 'Reign in Blood', 'Heavy Metal', 2, 'Def Jam Recordings', 12, 78, 0),
-(4, 'Master of Puppets', 'Heavy Metal', 1, 'Megaforce Records', 8, 120, 0);
+(4, 'Master of Puppets', 'Heavy Metal', 1, 'Megaforce Records', 8, 120, 0),
+(5, 'nulo', 'ruim', 1, 'aaaa', 9, 99, 1),
+(6, '...And Justice For All', 'Technical Thrash Metal', 1, 'Blackened Records', 88, 90, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

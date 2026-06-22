@@ -24,7 +24,7 @@
 
             <div class="ms-auto d-flex">
                 <a class = "nav-link text-white-50" href="index.php">Discos</a>
-                <a class = "nav-link text-white-50" href="cad-disco'php">Cadastrar Disco</a>
+                <a class = "nav-link text-white-50" href="cad-disco.php">Cadastrar Disco</a>
                 <a class = "nav-link text-light active" href="#">Artistas</a>
                 <a class = "nav-link text-white-50" href="cad-artista.php">Cadastrar Artistas</a>
             </div>
