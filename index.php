@@ -15,6 +15,36 @@
     $totalRegistros = mysqli_fetch_assoc($resultadoTotal)['Total'];
     $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
 
+    //BOTÃO EDITAR
+    if(isset($_POST['btnEditar']))
+    {
+        $codDisco = (int)$_POST['codDiscoEditar'];
+        $NovoTitulo = mysqli_real_escape_string($conexao, $_POST['titleInput']);
+        $NovoGenero = mysqli_real_escape_string($conexao, $_POST['genreInput']);
+        $NovoCodArt = (int)$_POST['artistaValue'];
+        $NovoGravadora = mysqli_real_escape_string($conexao, $_POST['recordInput']);
+        $NovoQuantidade = (int) $_POST['quantInput'];
+        $NovoValor = (float)$_POST['valInput'];
+
+        $comando = "
+            UPDATE tbdisco SET 
+            Titulo = '$NovoTitulo', 
+            Genero = '$NovoGenero', 
+            CodArt = $NovoCodArt, 
+            Gravadora = '$NovoGravadora', 
+            Quantidade = $NovoQuantidade, 
+            Valor = $NovoValor
+            WHERE CodDisco = $codDisco";
+
+        if(!mysqli_query($conexao, $comando))
+        {
+            die(mysqli_error($conexao));
+        }
+
+        header('Location: index.php');
+        exit();
+    }
+
     //BOTÃO EXCLUIR
     if(isset($_POST['btnExcluir']))
     {
@@ -102,7 +132,8 @@
                     a.Nome,
                     d.Gravadora,
                     d.Quantidade,
-                    d.Valor
+                    d.Valor,
+                    d.CodArt
                 FROM tbdisco d
                 LEFT JOIN tbartista a 
                     ON d.CodArt = a.CodArt 
@@ -165,8 +196,21 @@
                                 <td>$linha[6]</td>
 
                                 <td class='text-center'>
-                                            <a class='btn btn-sm btn-warning btn-sm' href='editar-disco.php'> Editar </a>
                                             
+                                            <button
+                                                class='btn btn-warning btn-sm btnEditar'
+                                                data-id='$linha[0]'
+                                                data-titulo='" . htmlspecialchars($linha[1], ENT_QUOTES) . "'
+                                                data-genero='" . htmlspecialchars($linha[2], ENT_QUOTES) . "'
+                                                data-gravadora='" . htmlspecialchars($linha[4], ENT_QUOTES) . "'
+                                                data-quantidade='$linha[5]'
+                                                data-valor='$linha[6]'
+                                                data-artistacod='$linha[7]'
+                                                data-bs-toggle='modal'
+                                                data-bs-target='#editModal'>
+                                                Editar
+                                            </button>  
+
                                             <button
                                                 class='btn btn-danger btn-sm btnExcluir'
                                                 data-id='$linha[0]'
@@ -247,7 +291,91 @@
                 document.getElementById('nomeDisco').textContent = nome;
             });
         });
+
+        document.querySelectorAll('.btnEditar').forEach(botao => {
+
+            botao.addEventListener('click', function() {
+
+                const id = this.dataset.id;
+                const titulo = this.dataset.titulo;
+                const genero = this.dataset.genero;
+                const gravadora = this.dataset.gravadora;
+                const quantidade = this.dataset.quantidade;
+                const valor = this.dataset.valor;
+                const artistacod = this.dataset.artistacod;
+
+                document.getElementById('codDiscoEditar').value = id;
+                document.getElementById('titleInput').value = titulo;
+                document.getElementById('genreInput').value = genero;
+                document.getElementById('artistaValue').value = artistacod;
+                document.getElementById('recordInput').value = gravadora;
+                document.getElementById('quantInput').value = quantidade;
+                document.getElementById('valInput').value = valor;
+            });
+        });
     </script>
+
+    <!-- MODAL DE EDITAR -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h6 class = "modal-title" style="padding-bottom: 20px;"><i class="bi bi-globe"></i> localhost</h6>
+                    <form method="POST">
+
+                        <input type="hidden" name="codDiscoEditar" id="codDiscoEditar">
+
+                        <label class="form-label"> Título: </label>
+                        <input type="text" class="form-control" name="titleInput" id="titleInput" required>
+
+                        <label class="form-label"> Gênero: </label>
+                        <input type="text" class="form-control" name="genreInput" id="genreInput" required>
+
+                        <label class="form-label"> Artista: </label>
+                        <select class="form-control" name="artistaValue" id="artistaValue">
+                        <?php
+                            $comando = "SELECT CodArt, Nome FROM tbartista WHERE IsDeleted = 0";
+                            $resultado = mysqli_query($conexao, $comando);
+
+                            if($resultado == false)
+                            {
+                                echo "<h4>Erro: ".mysqli_error($conexao)."</h4>";
+                            }
+                            else 
+                            {
+                                if(mysqli_num_rows($resultado) < 1)
+                                {
+                                    echo "<p>Não Existem Artistas no Banco de Dados</p>";
+                                }
+                                else
+                                {
+                                    while($linha = mysqli_fetch_row($resultado))
+                                    {
+                                        echo "<option value=$linha[0]>$linha[1]</option>";
+                                    }
+                                }
+                            }
+                        ?>
+                        </select>
+
+                        <label class="form-label"> Gravadora: </label>
+                        <input type="text" class="form-control" name="recordInput" id="recordInput" required>
+
+                        <label class="form-label"> Quantidade: </label>
+                        <input type="text" class="form-control" name="quantInput" id="quantInput" required>
+
+                        <label class="form-label"> Valor(R$): </label>
+                        <input type="text" class="form-control" name="valInput" id="valInput" required>
+
+                        <div class="text-end mt-3">
+                            <button type="submit" name="btnEditar" class="btn btn-primary btn-sm"> Salvar </button>
+                            <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal"> Cancelar </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL DE DELETAR -->
     <div class="modal fade" id="deleteModal" tabindex="-1">

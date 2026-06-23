@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 22/06/2026 às 23:45
+-- Tempo de geração: 23/06/2026 às 18:15
 -- Versão do servidor: 8.4.7
 -- Versão do PHP: 8.3.28
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `tbartista` (
   `Nome` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `IsDeleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`CodArt`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `tbartista`
@@ -74,10 +74,12 @@ INSERT INTO `tbartista` (`CodArt`, `Nome`, `IsDeleted`) VALUES
 (32, 'Incubus', 0),
 (33, 'Tool', 0),
 (34, 'A Perfect Circle', 0),
-(35, '', 0),
+(35, 'alguma coisa', 1),
 (36, 'fulano segundo', 0),
 (37, 'fulano terceiro', 0),
-(38, 'fulano quarto', 0);
+(38, 'fulano quarto', 0),
+(39, 'Jimi Hendrix', 0),
+(40, 'fulano rebirth', 0);
 
 -- --------------------------------------------------------
 
@@ -96,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `tbdisco` (
   `Valor` float DEFAULT NULL,
   `IsDeleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`CodDisco`,`CodArt`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `tbdisco`
@@ -108,7 +110,8 @@ INSERT INTO `tbdisco` (`CodDisco`, `Titulo`, `Genero`, `CodArt`, `Gravadora`, `Q
 (3, 'Reign in Blood', 'Heavy Metal', 2, 'Def Jam Recordings', 12, 78, 0),
 (4, 'Master of Puppets', 'Heavy Metal', 1, 'Megaforce Records', 8, 120, 0),
 (5, 'nulo', 'ruim', 1, 'aaaa', 9, 99, 1),
-(6, '...And Justice For All', 'Technical Thrash Metal', 1, 'Blackened Records', 88, 90, 0);
+(6, '...And Justice For All', 'Technical Thrash Metal', 1, 'Blackened Records', 88, 90, 0),
+(7, 'Jujutsu do meu Kaisen', 'jljlkjlk', 40, 'jkljlk', 8989, 890890, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

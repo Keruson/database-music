@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="modal-body"> 
-                    Artista cadastrado com sucesso! 
+                    Disco cadastrado com sucesso! 
                 </div>
 
                 <div class="modal-footer">
